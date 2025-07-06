@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { z } from 'zod'
 import { Env } from '../types'
-import { hash } from '@node-rs/bcrypt'
+import { hashSync } from 'bcryptjs'
 
 const app = new Hono<{ Bindings: Env }>()
 
@@ -29,7 +29,7 @@ app.post('/register', async (c) => {
     return c.json({ error: 'Email already registered' }, 409)
   }
 
-  const password_hash = await hash(password, 10) // ソルト10ラウンド
+  const password_hash = hashSync(password, 10)
   const id = crypto.randomUUID()
 
   await c.env.DB.prepare(`

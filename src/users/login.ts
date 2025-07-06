@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { z } from 'zod'
-import { compare } from '@node-rs/bcrypt'
+import { compareSync } from 'bcryptjs'
 import { SignJWT } from 'jose'
 import { Env } from '../types'
 
@@ -12,7 +12,7 @@ const schema = z.object({
 })
 
 const getJwtSecretKey = (env: Env): Uint8Array => {
-  return new TextEncoder().encode(env.AUTH_SECRET || 'your-dev-secret')
+  return new TextEncoder().encode(env.AUTH_SECRET || 'your-secret-string')
 }
 
 app.post('/login', async (c) => {
@@ -34,7 +34,7 @@ app.post('/login', async (c) => {
   }
 
   // パスワード検証
-  const ok = await compare(password, user.password_hash as string)
+  const ok = compareSync(password, user.password_hash as string)
   if (!ok) {
     return c.json({ error: 'Invalid email or password' }, 401)
   }
