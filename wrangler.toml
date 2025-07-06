@@ -1,0 +1,14 @@
+name = "learning-log-app-api"
+main = "src/index.ts"
+compatibility_date = "2025-07-06"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "learning-log-db"
+database_id = "2fbed07a-e4e5-4039-9a5a-9d5faac64235"
+
+[ai]
+binding = "AI"
+
+[vars]
+AUTH_SECRET = "your-secret-string"
