@@ -10,7 +10,7 @@ const app = new Hono()
 app.use(
   '*',
   cors({
-    origin: 'https://learning-log-app.pages.dev/',
+    origin: 'https://learning-log-app.pages.dev',
     credentials: true,
   })
 );
