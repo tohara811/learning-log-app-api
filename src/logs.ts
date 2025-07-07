@@ -44,7 +44,7 @@ ${content}
 `
 
   const ai = new Ai(c.env.AI)
-  const aiRes = await ai.run('@cf/meta/llama-3-8b-instruct', {
+  const aiRes = await ai.run('@cf/meta/llama-3.1-8b-instruct-fast', {
     prompt
   })
 
